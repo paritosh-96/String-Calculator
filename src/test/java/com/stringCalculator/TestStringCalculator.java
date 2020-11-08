@@ -42,5 +42,8 @@ public class TestStringCalculator {
 
         //with exception for \n and , together as an invalid input
         assertEquals(6, calculator.add("1,\n2,3"));
+
+        //positive test cases with negative numbers
+        assertEquals(6, calculator.add("1,2,\n3\n-4,-5\n-6"));
     }
 }

@@ -1,5 +1,8 @@
 package com.stringCalculator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Author : Paritosh
  * Date : 08/11/20
@@ -22,14 +25,20 @@ public class StringCalculator {
         if (numArray.length == 1) return Integer.parseInt(numArray[0]);
 
         int sum = 0;
+        List<String> negativeNums = new ArrayList<>();
         for (String s : numArray) {
             if (Utility.checkEmptyString(s)) continue;
             try {
-                sum += Integer.parseInt(s);
+                int num = Integer.parseInt(s.trim());
+                if (num < 0) negativeNums.add("" + num);
+                else sum += num;
             } catch (NumberFormatException e) {
                 System.err.println("Passed input [" + s + "] not a valid integer");
             }
         }
+
+        if (negativeNums.size() > 0)
+            System.err.println("Negatives not allowed [" + String.join(",", negativeNums) + "]");
         return sum;
     }
 }
