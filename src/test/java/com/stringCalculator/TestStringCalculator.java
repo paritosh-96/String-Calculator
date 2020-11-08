@@ -52,5 +52,9 @@ public class TestStringCalculator {
 
         //positive test cases to ignore numbers bigger than 1000
         assertEquals(1002, calculator.add("2,1000\n1001\n2000"));
+
+        //positive test cases to allow any length delimiter
+        assertEquals(6, calculator.add("//[***]\n1***2***3"));
+        assertEquals(1000, calculator.add("//[####]\n1###499###500"));
     }
 }
