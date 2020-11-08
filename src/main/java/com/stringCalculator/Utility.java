@@ -21,15 +21,15 @@ public class Utility {
     /**
      * function to add escape sequence to special characters in a regex
      *
-     * @param s
-     * @return
+     * @param s -input string
+     * @return - escaped string
      */
     public static String addEscape(String s) {
-        if (".$|()[{^?*+".contains(s.charAt(0) + "")) {
-            StringBuilder escapedString = new StringBuilder();
-            for (char c : s.trim().toCharArray()) escapedString.append("\\").append(c);
-            return escapedString.toString();
+        StringBuilder escapedString = new StringBuilder();
+        for (char c : s.trim().toCharArray()) {
+            if (".$|()[{^?*+".contains(c + "")) escapedString.append("\\").append(c);
+            else escapedString.append(c);
         }
-        return s;
+        return escapedString.toString();
     }
 }
