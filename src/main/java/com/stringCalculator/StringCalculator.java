@@ -21,7 +21,16 @@ public class StringCalculator {
         // if the input string is empty or null
         if (Utility.checkEmptyString(numbers)) return 0;
 
-        String[] numArray = numbers.trim().split("[,\n]");
+        String delimiter = "[,\n]";
+        if (numbers.trim().startsWith("//")) {
+            if (!numbers.contains("\n"))
+                throw new IllegalArgumentException("input string invalid. new delimiter not in valid format" +
+                        "Valid format : [//<delimiter>\\n]");
+            delimiter = numbers.substring(2, numbers.indexOf("\n"));
+            numbers = numbers.substring(numbers.indexOf("\n"));
+        }
+
+        String[] numArray = numbers.trim().split(delimiter);
         if (numArray.length == 1) return Integer.parseInt(numArray[0]);
 
         int sum = 0;

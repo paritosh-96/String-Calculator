@@ -45,5 +45,9 @@ public class TestStringCalculator {
 
         //positive test cases with negative numbers
         assertEquals(6, calculator.add("1,2,\n3\n-4,-5\n-6"));
+
+        //positive test cases to support any delimiter
+        assertEquals(6, calculator.add("//;\n1;2;3"));
+        assertEquals(8, calculator.add("//;:\n1;:2;:3;:2"));
     }
 }
