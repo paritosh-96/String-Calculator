@@ -60,5 +60,9 @@ public class TestStringCalculator {
         //positive test cases to allow multiple delimiters at once
         assertEquals(6, calculator.add("//[*][%]\n1*2%3"));
         assertEquals(8, calculator.add("//[*][%][;]\n1*2%3;2"));
+
+        //positive test cases to allow multiple delimiters for length longer that 1 of each delimiter
+        assertEquals(8, calculator.add("//[***][%%%]\n1***2%%%3***2"));
+        assertEquals(8, calculator.add("//[%%][::][***]\n1***2::3%%2"));
     }
 }
