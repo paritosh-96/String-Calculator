@@ -18,7 +18,7 @@ public class StringCalculator {
         // if the input string is empty or null
         if (Utility.checkEmptyString(numbers)) return 0;
 
-        String[] numArray = numbers.trim().split(",");
+        String[] numArray = numbers.trim().split("[,\n]");
         if (numArray.length == 1) return Integer.parseInt(numArray[0]);
 
         int sum = 0;

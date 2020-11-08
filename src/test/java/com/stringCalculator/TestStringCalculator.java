@@ -35,5 +35,12 @@ public class TestStringCalculator {
         //positive test cases with more than 2 numbers
         assertEquals(36, calculator.add("1,2,3,4,5,6,7,8"));
         assertEquals(160, calculator.add("10,20,30,40,50,10,"));
+
+        //positive test cases with \n and , both as delimiter
+        assertEquals(6, calculator.add("1\n2,3"));
+        assertEquals(10, calculator.add("2,2,4\n1\n1"));
+
+        //with exception for \n and , together as an invalid input
+        assertEquals(6, calculator.add("1,\n2,3"));
     }
 }
