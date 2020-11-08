@@ -40,7 +40,7 @@ public class StringCalculator {
             try {
                 int num = Integer.parseInt(s.trim());
                 if (num < 0) negativeNums.add("" + num);
-                else sum += num;
+                else if (num <= 1000) sum += num;
             } catch (NumberFormatException e) {
                 System.err.println("Passed input [" + s + "] not a valid integer");
             }
