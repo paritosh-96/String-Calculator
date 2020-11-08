@@ -23,14 +23,25 @@ public class StringCalculator {
 
         String delimiter = "[,\n]";
         if (numbers.trim().startsWith("//")) {
-            if (!numbers.contains("\n"))
-                throw new IllegalArgumentException("input string invalid. new delimiter not in valid format" +
-                        "Valid format : [//<delimiter>\\n]");
-            delimiter = numbers.trim().substring(2, numbers.indexOf("\n"));
-
-            // handle multiple delimiter
-            if (delimiter.contains("][")) delimiter = delimiter.replaceAll("]\\[", "]|[");
-            numbers = numbers.substring(numbers.indexOf("\n"));
+            //condition for multiple or longer delimiter
+            if (numbers.contains("[")) {
+                int curr_ind = 2;
+                char curr = numbers.charAt(2);
+                StringBuilder givenDelimiter = new StringBuilder();
+                StringBuilder del = new StringBuilder();
+                while (numbers.indexOf("\n") != curr_ind) {
+                    if (curr == ']') {
+                        if (givenDelimiter.length() != 0) givenDelimiter.append("|");
+                        givenDelimiter.append(Utility.addEscape(del.toString()));
+                        del = new StringBuilder();
+                    } else if (curr != '[') del.append(curr);
+                    curr = numbers.charAt(++curr_ind);
+                }
+                delimiter = givenDelimiter.toString();
+            } else {
+                delimiter = numbers.substring(2, numbers.indexOf("\n"));
+            }
+            numbers = numbers.substring(numbers.indexOf("\n") + 1);
         }
 
         String[] numArray = numbers.trim().split(delimiter);

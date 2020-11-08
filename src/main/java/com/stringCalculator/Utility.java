@@ -17,4 +17,19 @@ public class Utility {
     public static boolean checkEmptyString(String s) {
         return (s == null || s.trim().isEmpty());
     }
+
+    /**
+     * function to add escape sequence to special characters in a regex
+     *
+     * @param s
+     * @return
+     */
+    public static String addEscape(String s) {
+        if (".$|()[{^?*+".contains(s.charAt(0) + "")) {
+            StringBuilder escapedString = new StringBuilder();
+            for (char c : s.trim().toCharArray()) escapedString.append("\\").append(c);
+            return escapedString.toString();
+        }
+        return s;
+    }
 }
