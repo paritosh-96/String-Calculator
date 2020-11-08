@@ -27,6 +27,9 @@ public class StringCalculator {
                 throw new IllegalArgumentException("input string invalid. new delimiter not in valid format" +
                         "Valid format : [//<delimiter>\\n]");
             delimiter = numbers.substring(2, numbers.indexOf("\n"));
+
+            // handle multiple delimiter
+            if (delimiter.contains("][")) delimiter = delimiter.replaceAll("]\\[", "]|[");
             numbers = numbers.substring(numbers.indexOf("\n"));
         }
 
